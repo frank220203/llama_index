@@ -12,6 +12,8 @@ pip install fastapi-utils
 pip install typing-inspect
 # asyncio 비동기 처리가 가능한 서버
 pip install uvicorn
+# App 설정
+pip install pydantic-settings
 ```
 
 ### FastAPI 실행 방법
