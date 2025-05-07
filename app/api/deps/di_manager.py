@@ -19,5 +19,8 @@ def get_vectore_repository() -> VectorRepository:
     return VectorRepositoryImpl()
 
 ## Usecases
-def get_channel_usecase(query_service: QueryService = Depends(get_query_service), vector_repository: VectorRepository = Depends(get_vectore_repository)) -> ChannelUsecase:
+def get_channel_usecase(
+    query_service: QueryService = Depends(get_query_service),
+    vector_repository: VectorRepository = Depends(get_vectore_repository)
+) -> ChannelUsecase:
     return ChannelUsecase(query_service, vector_repository)
