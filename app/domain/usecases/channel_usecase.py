@@ -1,30 +1,30 @@
 from domain.usecases.services.query_service import QueryService
-from domain.repositories.vector_repository import VectorRepository
+from domain.repositories.postgres_repository import PostgresRepository
 
 class ChannelUsecase:
 
     __init_db: bool
     __do_indexing: bool
     __query_service: QueryService
-    __vector_repository: VectorRepository
+    __postgres_repository: PostgresRepository
 
     def __init__(
         self,
         query_service: QueryService,
-        vector_repository: VectorRepository
+        postgres_repository: PostgresRepository
     ):
         self.__init_db = True
         self.__do_indexing = True
         self.__query_service = query_service
-        self.__vector_repository = vector_repository
+        self.__postgres_repository = postgres_repository
 
     async def submit_query(self, query: str) -> str:
         
         if self.__init_db:
-            self.__vector_repository.create_vector_db()
+            self.__postgres_repository.create_db()
             self.__init_db = False
 
-        url = self.__vector_repository.make_url()
+        url = self.__postgres_repository.make_url()
         print(f"url : {str(url)}")
         vector_store = self.__query_service.get_vector_store(url)
 

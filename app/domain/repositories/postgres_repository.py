@@ -1,10 +1,10 @@
 from abc import ABC, abstractmethod
 from typing import Any
 
-class VectorRepository(ABC):
+class PostgresRepository(ABC):
 
     @abstractmethod
-    def create_vector_db(connection_string: str, db_name: str):
+    def create_db(db_name: str):
         pass
     
     @abstractmethod

@@ -1,5 +1,5 @@
 from typing import Literal
-from pydantic import PostgresDsn, computed_field
+from pydantic import PostgresDsn
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -20,8 +20,6 @@ class Settings(BaseSettings):
     POSTGRE_DB: str
     VECTOR_DB: str
 
-    # 메서드를 Pydantic의 필드로 인식하게 해주기 위해 # type: ignore[prop-decorator] 작성
-    # @computed_field # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
         return MultiHostUrl.build(
